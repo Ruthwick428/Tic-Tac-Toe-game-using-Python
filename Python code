@@ -1,0 +1,71 @@
+# libraries needed for the program
+
+import numpy as np
+import pandas as pd
+mat1 = np.matrix('0 0 0 ; 0 0 0; 0 0 0 ')
+mat1 = np.array(mat1)
+mat1 = pd.DataFrame(mat1)
+
+# Main Code
+
+def tic_tac_toe():
+    global mat1
+    import numpy as np
+    import pandas as pd
+    mat1 = [''] * 9
+    y = ['']*9
+    game_on = 1
+    n = 0
+    m = ['X','O']
+    while game_on == 1:
+        mark = raw_input('your move X or O : ' )
+        if mark in m:
+            p = raw_input('a position from 0 to 9 : ')
+            x = int(p)
+            if x not in y  :
+                mat1[x] = mark
+                print 'game board \n'
+                print '| {} | | {} | | {} | \n| {} | | {} | | {} | \n| {} | | {} | | {} | '.format(mat1[0],mat1[1],mat1[2],
+                                                                                                     mat1[3],mat1[4],mat1[5],
+                                                                                                     mat1[6],mat1[7],mat1[8])
+
+                if mark == 'X':
+                    if (mat1[6] == 'X' and mat1[7] == 'X' and mat1[8] == 'X' or
+                        mat1[3] == 'X' and mat1[4] == 'X' and mat1[5] == 'X' or 
+                        mat1[0] == 'X' and mat1[1] == 'X' and mat1[2] == 'X' or 
+                        mat1[6] == 'X' and mat1[3] == 'X' and mat1[0] == 'X' or 
+                        mat1[7] == 'X' and mat1[4] == 'X' and mat1[1] == 'X' or 
+                        mat1[8] == 'X' and mat1[5] == 'X' and mat1[2] == 'X' or
+                        mat1[6] == 'X' and mat1[4] == 'X' and mat1[2] == 'X' or
+                        mat1[8] == 'X' and mat1[4] == 'X' and mat1[0] == 'X') :
+                            print ' Game over! \n player with X wins'
+                            game_on = 0
+                            break
+
+                elif mark == 'O':
+                    if (mat1[6] == 'O' and mat1[7] == 'O' and mat1[8] == 'O' or
+                        mat1[3] == 'O' and mat1[4] == 'O' and mat1[5] == 'O' or 
+                        mat1[0] == 'O' and mat1[1] == 'O' and mat1[2] == 'O' or 
+                        mat1[6] == 'O' and mat1[3] == 'O' and mat1[0] == 'O' or 
+                        mat1[7] == 'O' and mat1[4] == 'O' and mat1[1] == 'O' or 
+                        mat1[8] == 'O' and mat1[5] == 'O' and mat1[2] == 'O' or
+                        mat1[6] == 'O' and mat1[4] == 'O' and mat1[2] == 'O' or
+                        mat1[8] == 'O' and mat1[4] == 'O' and mat1[0] == 'O'):
+                            print ' Game over! \n player with O wins'
+                            game_on = 0
+                            break
+
+            elif x in y: 
+                print "position has been filled. please enter other than any one of the following postions\n" + str(y)
+                game_on = 1
+            elif mat1.count('') == 0:
+                print 'sorry it is a draw'
+                game_on = 0
+                break
+            y[x] = x
+    print 'do you wish to play the game again? : Y/N \n' 
+    replay = raw_input()
+    if replay == 'y':
+        tic_tac_toe() 
+    else: print 'end of game. C U Later!!!'
+        
